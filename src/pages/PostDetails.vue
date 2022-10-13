@@ -63,8 +63,8 @@ export default {
       post: {
         user: {},
         id: 1,
-        title: 'Step into web development',
-        text: 'zwtzwe zwez ewztwe gwsfhf dfhdfhdfhdfhdfh dfhdfhbndfhdfnbd  bdfnd fndndf dfbd bdfdfb dfbdf bsddsbdfb dfbnd  bsdfb dfb dfb dbd fbdf hbdfbdfbdfb',
+        title: '',
+        body: '',
       },
     };
   },
