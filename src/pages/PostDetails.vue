@@ -81,7 +81,13 @@ export default {
         .then((res) => res.json()).then((res) => this.post.user = res);
     },
     onPostComment(comment) {
-      this.post.comments.push({ id: new Date().getTime(), body: comment, postId: 1 });
+      fetch(`post/${this.postId}/comments/`, {
+        method: 'post',
+        body: {
+          name: 'some name', email: 'danko.jakovina@gmail.com', body: comment,
+        },
+      })
+        .then((res) => res.json()).then((res) => this.post.user = res);
     },
 
   },

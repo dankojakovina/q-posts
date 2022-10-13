@@ -77,8 +77,13 @@ export default {
       this.loading = false;
     },
     onPostComment(postId, comment) {
-      this.data.comments.push({ id: new Date().getTime(), body: comment, postId });
-      this.formatData();
+      fetch(`post/${postId}/comments/`, {
+        method: 'post',
+        body: {
+          name: 'some name', email: 'danko.jakovina@gmail.com', body: comment,
+        },
+      })
+        .then((res) => res.json()).then((res) => this.post.user = res);
     },
     onShowComments() {
       this.showComments = true;

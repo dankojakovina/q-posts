@@ -3,7 +3,8 @@
     <i
       v-for="(icon, index) of getIcons"
       :key="index"
-      :class="[`fa-${iconType} ${icon} pointer`, index !== getIcons.length -1? 'mr-2' : '']" />
+      :class="[`fa-${iconType} ${icon} pointer`, index !== getIcons.length -1? 'mr-2' : '']"
+      @click="onClick(icon)" />
   </div>
 </template>
 
@@ -35,6 +36,11 @@ export default {
   computed: {
     getIcons() {
       return this.overwriteDefaults ? this.icons : [...this.icons, ...this.defaultIcons];
+    },
+  },
+  methods: {
+    onClick(icon) {
+      this.$emit('selected', icon);
     },
   },
 

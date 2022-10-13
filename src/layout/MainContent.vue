@@ -2,9 +2,7 @@
   <div class="main">
     <NavBar />
     <div class="progress-wrap">
-      <QProgress
-        v-if="progress !== 100"
-        :progress="progress" />
+      <QProgress v-if="progress !== 100" :progress="progress" />
     </div>
 
     <div class="content">
@@ -71,14 +69,17 @@ export default {
   padding: 30px;
   margin-top: 50px;
   border-radius: 4px;
-  width: 100%!important;
+  width: 100% !important;
   align-self: center;
   min-height: calc(100vh - 52px);
 }
 
 .progress-wrap {
-  position: relative;
-  top: 60px;
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  height: 5px;
+  z-index: 1000;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -98,5 +99,4 @@ export default {
     width: 100%;
   }
 }
-
 </style>
