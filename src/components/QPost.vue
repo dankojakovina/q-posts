@@ -128,7 +128,6 @@ export default {
   },
   methods: {
     toggleReplays() {
-      // this.$emit('showComments', this.post);
       this.replaysVisible = !this.replaysVisible;
     },
     goToDetails() {
