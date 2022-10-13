@@ -5,7 +5,7 @@
 				<QAvatar :src="comment.avatar" size="small" />
 			</div>
 			<div>
-				<div class="ft-size-14 text-dark">Jure Jurić</div>
+				<div class="ft-size-14 text-dark">{{comment.email}}</div>
 				<div class="ft-size-14 text-dark">
 					{{ comment.body }}
 				</div>

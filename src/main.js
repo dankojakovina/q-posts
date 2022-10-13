@@ -7,6 +7,7 @@ import messages from './locales';
 import vueService from './services/vueService';
 import theme from './theme/index';
 import state from './state/configuration';
+import { fetch } from './api/interceptor';
 
 Vue.config.productionTip = false
 Vue.use(VueI18n);
@@ -20,3 +21,4 @@ const vueApp =new Vue({
 
 vueService.init(vueApp, theme);
 state.init();
+window.fetch = fetch;

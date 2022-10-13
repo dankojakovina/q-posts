@@ -21,23 +21,23 @@
 
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="date-editor text-dark font-weight-400 ft-size-16 ln-height-16 mb-3">
-								Ivan Horvat
-								<div class="small text-dark font-italic">web dev at Facebook</div>
+							<div class="text-dark font-weight-400 ft-size-16 ln-height-16 mb-3">
+								{{post.user.name}}
+								<div class="small text-dark font-italic"> {{post.user.company.name}}</div>
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-12">
-							<div @click="goToDetails" class="date-editor text-dark font-weight-bold text--dark ft-size-16 pointer underline-hover">Step into web development</div>
+							<div @click="goToDetails" class="ln-height-16 mb-2 text-dark font-weight-bold text--dark ft-size-16 pointer underline-hover">{{ post.title }}</div>
 						</div>
 					</div>
 
 
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="post-text text-dark ln-height-18">{{ post.text }}</div>
+							<div class="post-text text-dark ln-height-18">{{ post.body }}</div>
 						</div>
 					</div>
 

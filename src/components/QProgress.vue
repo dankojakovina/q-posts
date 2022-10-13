@@ -1,0 +1,113 @@
+<template>
+  <div class="progress">
+	<span :style="{'width': progress+'%'}"></span>
+</div>
+</template>
+
+<script>
+export default {
+    name: 'QProgress',
+    props: {
+        progress: {
+            required: false,
+            type: Number,
+            default: 0,
+        }
+    }
+
+}
+</script>
+
+<style scoped>
+.progress {
+  box-sizing: content-box;
+  height: 5px;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+.progress > span {
+  display: block;
+  height: 100%;
+  background-color: rgb(43, 194, 83);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43, 194, 83) 37%,
+    rgb(84, 240, 84) 69%
+  );
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.progress > span:after,
+.animate > span > span {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  z-index: 1;
+  background-size: 50px 50px;
+  animation: move 2s linear infinite;
+  overflow: hidden;
+}
+
+.animate > span:after {
+  display: none;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.orange > span {
+  background-image: linear-gradient(#f1a165, #f36d0a);
+}
+
+.red > span {
+  background-image: linear-gradient(#f0a3a3, #f42323);
+}
+
+.nostripes > span > span,
+.nostripes > span::after {
+  background-image: none;
+}
+
+#page-wrap {
+  width: 490px;
+  margin: 80px auto;
+}
+body {
+  background: #333;
+  text-align: center;
+  color: #eee;
+  font-family: system-ui, sans-serif;
+}
+h1 {
+  font-size: 42px;
+  font-weight: 600;
+  margin: 0 0 30px;
+}
+pre {
+  background: #000;
+  text-align: left;
+  padding: 20px;
+  margin: 0 auto 30px;
+}
+
+</style>
