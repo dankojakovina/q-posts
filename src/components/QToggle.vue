@@ -47,7 +47,6 @@ export default {
 </script>
 
 <style scoped>
-/* toggle in label designing */
 .toggle {
     position: relative;
     display: inline-block;
@@ -57,7 +56,6 @@ export default {
     border-radius: 30px;
 }
 
-/* After slide changes */
 .toggle:after {
     content: '';
     position: absolute;
@@ -74,23 +72,19 @@ label {
     margin-bottom: 0;
 }
 
-/* Toggle text */
 p {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-/* Checkbox checked effect */
 .checkbox:checked+.toggle::after {
     left: 20px;
 }
 
-/* Checkbox checked toggle label bg color */
 .checkbox:checked+.toggle {
     background-color: #65e980;
 }
 
-/* Checkbox vanished */
 .checkbox {
     display: none;
 }
