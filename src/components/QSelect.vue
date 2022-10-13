@@ -1,43 +1,50 @@
 <template>
-	<div>
-		<select @change="change" :value="value">
-			<option v-for="(option, index) of options" :value="option" :key="index">{{ option }}</option>
-		</select>
-	</div>  
+  <div>
+    <select
+      :value="value"
+      @change="change">
+      <option
+        v-for="(option, index) of options"
+        :key="index"
+        :value="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'QSelect',
-    props: {
-        label: {
-            required: false,
-            Type: String,
-            default: ''
-        },
-        options: {
-            required: false,
-            type: Array,
-            default: () => []
-        },
-        value: {
-            required: false,
-            type: String,
-            default: ''
-        }
+  name: 'QSelect',
+  props: {
+    label: {
+      required: false,
+      type: String,
+      default: '',
     },
-    data() {
-        return {
-          
-        }
+    options: {
+      required: false,
+      type: Array,
+      default: () => [],
     },
-    methods: {
-        change(evt) {
-            this.$emit('change', evt.target.value);
-        }
-    }
+    value: {
+      required: false,
+      type: String,
+      default: '',
+    },
+  },
+  data() {
+    return {
 
-}
+    };
+  },
+  methods: {
+    change(evt) {
+      this.$emit('change', evt.target.value);
+    },
+  },
+
+};
 </script>
 
 <style scoped>

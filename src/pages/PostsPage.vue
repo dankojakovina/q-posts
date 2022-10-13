@@ -2,22 +2,22 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-12 col-md-4 pl-2">
-        <QSearch @input="onSearch" />
+        <QSearch
+          :placeholder="$t('search_post')"
+          @input="onSearch" />
       </div>
     </div>
     <div class="row">
       <div v-if="!loading">
         <QPost
-          @showComments="onShowComments"
           v-for="post of filteredList"
           :key="post.id"
           :post="post"
-        >
+          @showComments="onShowComments">
           <QCommentInput
             class="pt-2"
             :no-padding="true"
-            @postComment="onPostComment(post.id, $event)"
-          />
+            @postComment="onPostComment(post.id, $event)" />
         </QPost>
       </div>
     </div>
@@ -32,19 +32,12 @@ import { Page } from '../mixins/index.js';
 
 export default {
   name: 'PostsPage',
-  mixins: [Page('Posts')],
   components: {
     QPost,
     QCommentInput,
-    QSearch
+    QSearch,
   },
-  filters: {
-    search: (value) => {
-    console.log(value);
-
-    return value;
-    }
-  },
+  mixins: [Page('Posts')],
   data() {
     return {
       loading: false,
@@ -52,37 +45,31 @@ export default {
       comments: [],
       posts: [],
       urls: ['posts', 'comments', 'users'],
+      searchProperties: ['name', 'username', 'website', 'email'],
       search: '',
-    }
-  },
-  created() {
-    this.loadData();    
+    };
   },
   computed: {
     filteredList() {
-      return this.posts.filter(post => {
-        return post.user.name.toLowerCase().includes(this.search.toLowerCase())
-      });
-    }
-  },  
+      return this.posts.filter((post) => this.searchProperties.find((property) => post.user[property].toLowerCase().includes(this.search.toLowerCase())));
+    },
+  },
+  created() {
+    this.loadData();
+  },
   methods: {
     async loadData() {
       this.loading = true;
       await Promise.all(
-        this.urls.map((url) => {
-          return fetch(url).then((res) => res.json());
-        })).then((res)  => {
-          this.formatData(...res);
-      })
-    },  
+        this.urls.map((url) => fetch(url).then((res) => res.json())),
+      ).then((res) => {
+        this.formatData(...res);
+      });
+    },
     formatData(posts, comments, users) {
       this.posts = posts.map((post) => {
-        const userComments = comments.filter((comment) => {
-          return post.id === comment.postId;
-        });
-        const user = users.find((user) => {
-          return post.userId === user.id;
-        });
+        const userComments = comments.filter((comment) => post.id === comment.postId);
+        const user = users.find((u) => post.userId === u.id);
         post.comments = userComments;
         post.user = user;
         return post;
@@ -97,9 +84,9 @@ export default {
       this.showComments = true;
     },
     onSearch(evt) {
-     this.search = evt;
-    }
-  }
+      this.search = evt;
+    },
+  },
 };
 </script>
 

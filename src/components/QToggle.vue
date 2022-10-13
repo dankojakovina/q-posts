@@ -1,41 +1,49 @@
 <template>
-	<div>
-		<input type="checkbox" id="switch" :checked="value" class="checkbox" :value="value" @input="toggle">
-		<label for="switch" class="toggle"> {{ label }}</label>
-	</div>
+  <div>
+    <input
+      id="switch"
+      type="checkbox"
+      :checked="value"
+      class="checkbox"
+      :value="value"
+      @input="toggle">
+    <label
+      for="switch"
+      class="toggle"> {{ label }}</label>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'QToggle',
-    props: {
-        label: {
-            required: false,
-            Type: String,
-            default: ''
-        },
-        value: {
-            required: false,
-            Type: Boolean,
-            default: false
-        }
+  name: 'QToggle',
+  props: {
+    label: {
+      required: false,
+      type: String,
+      default: '',
     },
-    data() {
-        return {
-           
-        }
+    value: {
+      required: false,
+      type: Boolean,
+      default: false,
     },
-    methods: {
-        toggle() {
-            if (this.value) {
-                this.$emit('input', false);
-                return;
-            }
-            this.$emit('input', true);
-        }
-    }
+  },
+  data() {
+    return {
 
-}
+    };
+  },
+  methods: {
+    toggle() {
+      if (this.value) {
+        this.$emit('input', false);
+        return;
+      }
+      this.$emit('input', true);
+    },
+  },
+
+};
 </script>
 
 <style scoped>

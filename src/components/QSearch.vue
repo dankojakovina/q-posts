@@ -1,24 +1,35 @@
 <template>
   <div>
-    <input @input="onInput" type="text" v-model="search">
+    <input
+      v-model="search"
+      type="text"
+      :placeholder="placeholder"
+      @input="onInput">
   </div>
 </template>
 
 <script>
 export default {
-    name: 'QSearch',
-data() {
+  name: 'QSearch',
+  props: {
+    placeholder: {
+      required: true,
+      type: String,
+      default: 'Search',
+    },
+  },
+  data() {
     return {
-        search: ''
-    }
-},
-methods: {
+      search: '',
+    };
+  },
+  methods: {
     onInput() {
-        this.$emit('input', this.search);
-    }
-}
+      this.$emit('input', this.search);
+    },
+  },
 
-}
+};
 </script>
 
 <style soped>

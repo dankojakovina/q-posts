@@ -1,6 +1,6 @@
 export default {
-    init(vueInstance, theme) {
-        this.i18n = vueInstance.$i18n;
-        theme.createTheme();
-    }
-}
+  init(vueInstance, theme) {
+    this.i18n = vueInstance.$i18n;
+    theme.createTheme();
+  },
+};

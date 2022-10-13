@@ -1,14 +1,16 @@
 <template>
-	<div class="main">
-		<NavBar />
+  <div class="main">
+    <NavBar />
     <div class="progress-wrap">
-      <QProgress v-if="progress !== 100" :progress="progress" />
+      <QProgress
+        v-if="progress !== 100"
+        :progress="progress" />
     </div>
-    
-		<div class="content">
-			<router-view />
-		</div>
-	</div>
+
+    <div class="content">
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -20,17 +22,24 @@ export default {
   name: 'MainContent',
   components: {
     NavBar,
-    QProgress
+    QProgress,
   },
   data() {
     return {
       progress: 0,
-      interval: null
-    }
+      interval: null,
+    };
   },
   created() {
     eventBus.$on('LOADING_START', this.onLoading);
     eventBus.$on('LOADING_END', this.onLoadingEnd);
+  },
+  destroyed() {
+    eventBus.$off('LOADING_START', this.onLoading);
+    eventBus.$off('LOADING_END', this.onLoadingEnd);
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   },
   methods: {
     onLoading() {
@@ -42,20 +51,13 @@ export default {
       }, 20);
     },
     onLoadingEnd() {
-      if(this.interval) {
+      if (this.interval) {
         this.progress = 100;
         clearInterval(this.interval);
       }
-    }
+    },
   },
-  destroyed() {
-    eventBus.$off('LOADING_START', this.onLoading);
-    eventBus.$off('LOADING_END', this.onLoadingEnd);
-    if(this.interval) {
-        clearInterval(this.interval);
-      }
-  }
-}
+};
 </script>
 
 <style scoped>

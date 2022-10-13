@@ -1,21 +1,21 @@
 <template>
   <div class="progress">
-	<span :style="{'width': progress+'%'}"></span>
-</div>
+    <span :style="{'width': progress+'%'}" />
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'QProgress',
-    props: {
-        progress: {
-            required: false,
-            type: Number,
-            default: 0,
-        }
-    }
+  name: 'QProgress',
+  props: {
+    progress: {
+      required: false,
+      type: Number,
+      default: 0,
+    },
+  },
 
-}
+};
 </script>
 
 <style scoped>

@@ -1,58 +1,66 @@
 <template>
-	<div :style="{'padding': getPadding}" class="d-flex justify-content-between align-items-center bg-white">
-		<div class="d-flex flex-1">
-			<QAvatar size="small" />
-			<input v-model="comment" @keydown.enter="postComment" :placeholder="$t('write_comment')" type="text">
-		</div>
-		<div>
-			<i @click="postComment" class="pointer fa-solid fa-paper-plane" />
-		</div>
-	</div>
+  <div
+    :style="{'padding': getPadding}"
+    class="d-flex justify-content-between align-items-center bg-white">
+    <div class="d-flex flex-1">
+      <QAvatar size="small" />
+      <input
+        v-model="comment"
+        :placeholder="$t('write_comment')"
+        type="text"
+        @keydown.enter="postComment">
+    </div>
+    <div>
+      <i
+        class="pointer fa-solid fa-paper-plane"
+        @click="postComment" />
+    </div>
+  </div>
 </template>
 
 <script>
-import QAvatar from '../components/QAvatar.vue';
+import QAvatar from './QAvatar.vue';
 
 export default {
   name: 'QCommentInput',
   components: {
-    QAvatar
+    QAvatar,
   },
   props: {
     padding: {
       required: false,
       type: String,
-      default: '5px 10px'
+      default: '5px 10px',
     },
     noPadding: {
       required: false,
       type: Boolean,
-      default: false
-    }
-  },  
+      default: false,
+    },
+  },
   data() {
     return {
-      comment: ''
-    }
+      comment: '',
+    };
   },
   computed: {
     getPadding() {
       return this.noPadding ? 0 : this.padding;
-    }
-  }, 
+    },
+  },
   methods: {
     postComment() {
-      if(!this.comment) return;
+      if (!this.comment) return;
       this.$emit('postComment', this.comment);
       this.comment = '';
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
 .bg-white {
-  background: var(--q-primary)!important;
+  background: var(--q-primary) !important;
 }
 
 input {
@@ -70,11 +78,10 @@ input {
 }
 
 .text-dark {
-	color: var(--q-text-dark)!important;
+  color: var(--q-text-dark) !important;
 }
 
 i {
-    color: var(--q-text-dark);
+  color: var(--q-text-dark);
 }
-
 </style>
